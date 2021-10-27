@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:buster
 
 LABEL maintainer="lotusnoir"
 
@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV container docker
 
 RUN apt-get update ; \
-    apt-get install -y --no-install-recommends systemd systemd-sysv python3 sudo gnupg python3-apt ;\
+    apt-get install -y --no-install-recommends systemd systemd-sysv sudo gnupg python-apt ;\
     apt-get clean && rm -rf /var/lib/apt/lists/* ;\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
     rm -rf /lib/systemd/system/multi-user.target.wants/* ;\
