@@ -44,7 +44,7 @@ test_build:
     - docker:dind
   script:
     - docker build -t test-build .
-    - docker run --name test-build-container --rm test-build systemctl --version
+    - docker run --name test-build --rm test-build systemctl --version
 
 
 ##################################################
