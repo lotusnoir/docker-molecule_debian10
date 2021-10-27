@@ -6,7 +6,7 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends systemd systemd-sysv \
+    && apt-get install -y --no-install-recommends systemd systemd-sysv python3-apt \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc /usr/share/man \
     && rm -f /lib/systemd/system/multi-user.target.wants/* \
