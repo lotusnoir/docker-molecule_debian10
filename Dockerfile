@@ -1,15 +1,14 @@
-FROM debian:buster
+FROM debian:10
 
 LABEL maintainer="lotusnoir"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV container docker
-
 RUN apt-get update ; \
     apt-get install -y --no-install-recommends systemd systemd-sysv sudo gnupg python-apt ;\
     apt-get clean && rm -rf /var/lib/apt/lists/* ;\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
+    rm -Rf /usr/share/doc && rm -Rf /usr/share/man ;\
     rm -rf /lib/systemd/system/multi-user.target.wants/* ;\
     rm -rf /etc/systemd/system/*.wants/* ;\
     rm -rf /lib/systemd/system/local-fs.target.wants/* ;\
