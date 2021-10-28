@@ -18,4 +18,4 @@ RUN apt-get update \
     /lib/systemd/system/systemd-update-utmp*
 
 VOLUME [ "/sys/fs/cgroup" ]
-CMD ["/lib/systemd/systemd"]
+ENTRYPOINT ["/lib/systemd/systemd"]
