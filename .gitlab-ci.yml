@@ -94,11 +94,13 @@ push_src_on_github:
     - git config --global user.email "${GITHUB_USER_EMAIL}"
     - git config --global user.name "${GITHUB_USER}"
     - git config --global init.defaultBranch main
+    - COMMENT=$(git log -1 --pretty=%B | head -1)
+    - echo $COMMENT
   script:
     - git clone git@github.com:${GITHUB_USER}/docker-molecule_debian10.git /tmp/docker-molecule_debian10
     - rm -rf .git
     - cp -r . /tmp/docker-molecule_debian10/
     - cd /tmp/docker-molecule_debian10
     - git add -A
-    - git commit -m "adding features" || echo "No changes, nothing to commit!"
+    - git commit -m "${COMMENT}" || echo "No changes, nothing to commit!"
     - git push
