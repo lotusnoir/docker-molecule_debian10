@@ -3,7 +3,7 @@ LABEL maintainer="lotusnoir"
 
 ENV container docker
 ENV LC_ALL C
-ENV DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends systemd systemd-sysv sudo python3 python3-apt python3-pip python3-setuptools \
@@ -20,5 +20,4 @@ RUN apt-get update \
     /lib/systemd/system/systemd-update-utmp*
 
 VOLUME [ "/sys/fs/cgroup" ]
-#ENTRYPOINT ["/lib/systemd/systemd"]
-CMD ["/lib/systemd/systemd"]
+ENTRYPOINT ["/lib/systemd/systemd"]
