@@ -5,14 +5,17 @@ ENV container docker
 ENV LC_ALL C
 ARG DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update \
+RUN apt-get update && apt-get upgrade \
     && apt-get install -y --no-install-recommends systemd systemd-sysv sudo python3 python3-apt python3-pip python3-setuptools net-tools procps wget ca-certificates \
-    && python3 -m pip install --no-cache-dir --upgrade pip \
-    && python3 -m pip install --no-cache-dir ansible cryptography jmespath \
-    && apt-get clean \
-    && wget -q -O /usr/local/bin/goss https://github.com/aelsabbahy/goss/releases/download/v0.3.21/goss-linux-amd64 && chmod +x /usr/local/bin/goss \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc /usr/share/man \
-    && rm -f /lib/systemd/system/multi-user.target.wants/* \
+    && apt-get clean
+
+RUN python3 -m pip install --no-cache-dir --upgrade pip \
+    && python3 -m pip install --no-cache-dir ansible cryptography jmespath
+
+RUN wget -q -O /usr/local/bin/goss https://github.com/aelsabbahy/goss/releases/download/v0.4.2/goss-linux-amd64 && chmod +x /usr/local/bin/goss
+
+RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
     /lib/systemd/system/local-fs.target.wants/* \
     /lib/systemd/system/sockets.target.wants/*udev* \
