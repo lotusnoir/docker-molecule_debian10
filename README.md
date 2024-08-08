@@ -6,9 +6,7 @@ This repo was created in order to test ansible roles with molecule. There is als
 ## Build it locally
 
   docker build -t test-build .
-  docker run  -t --cgroupns=private --cgroup-parent=docker.slice -v /sys/fs/cgroup/docker.slice:/sys/fs/cgroup:ro test-build
-
-  docker build - < Dockerfile
+  docker run -t --cgroupns=host --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw test-build
 
 ## Use it from dockerhub
 

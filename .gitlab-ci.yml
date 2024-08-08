@@ -45,7 +45,7 @@ test_build:
   script:
     - docker build -t test-build .
     - docker stop test-debian10 || true && docker rm test-debian10 || true
-    - docker run -d --name=test-debian10 --cgroupns host --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw test-build
+    - docker run -d --name=test-debian10 --cgroupns=host --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw test-build
     - docker exec test-debian10 systemctl --version
     - docker stop test-debian10 && docker rm test-debian10
 
